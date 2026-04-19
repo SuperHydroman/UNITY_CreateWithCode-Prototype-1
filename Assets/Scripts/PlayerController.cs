@@ -6,6 +6,10 @@ public class PlayerController : MonoBehaviour
     private float _turnSpeed = 45f;
     private float _horizontalInput;
     private float _forwardInput;
+    
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
 
     // Update is called once per frame
     void Update()
@@ -18,5 +22,11 @@ public class PlayerController : MonoBehaviour
         
         // Rotates the car based on horizontal input
         transform.Rotate(Vector3.up * (Time.deltaTime * _turnSpeed * _horizontalInput));
+
+        if (Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
